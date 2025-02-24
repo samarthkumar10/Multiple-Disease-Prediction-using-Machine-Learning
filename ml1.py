@@ -69,7 +69,7 @@ if selected == "Diabetes Analysis":
 
 # Heart Disease Prediction Page
 elif selected == "Heart Health Check":
-    st.title("💗 Heart Disease Risk Analysis")
+    st.title("❤️ Heart Disease Risk Analysis")
     st.write("Assess your heart condition with AI-powered insights.")
     
     col1, col2, col3 = st.columns(3)
@@ -110,24 +110,20 @@ elif selected == "Parkinson's Assessment":
     st.title("🧠 Parkinson's Disease Risk Evaluation")
     st.write("Analyze biomarkers to detect Parkinson's disease early.")
     
-    col1, col2 = st.columns(2)
+    inputs = []
+    cols = st.columns(3)
+    feature_names = ["MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", "MDVP:Jitter(Abs)",
+                     "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", "MDVP:Shimmer", "MDVP:Shimmer(dB)", "Shimmer:APQ3",
+                     "Shimmer:APQ5", "MDVP:APQ", "Shimmer:DDA", "NHR", "HNR", "RPDE", "DFA", "spread1", "spread2",
+                     "D2", "PPE"]
     
-    with col1:
-        fo = st.number_input("MDVP:Fo(Hz)", min_value=0.0, format="%.3f")
-        fhi = st.number_input("MDVP:Fhi(Hz)", min_value=0.0, format="%.3f")
-        flo = st.number_input("MDVP:Flo(Hz)", min_value=0.0, format="%.3f")
-        Jitter_percent = st.number_input("MDVP:Jitter(%)", min_value=0.0, format="%.3f")
-    
-    with col2:
-        RAP = st.number_input("MDVP:RAP", min_value=0.0, format="%.3f")
-        PPQ = st.number_input("MDVP:PPQ", min_value=0.0, format="%.3f")
-        Shimmer = st.number_input("MDVP:Shimmer", min_value=0.0, format="%.3f")
-        NHR = st.number_input("NHR", min_value=0.0, format="%.3f")
+    for i, feature in enumerate(feature_names):
+        with cols[i % 3]:
+            inputs.append(st.number_input(feature, min_value=0.0, format="%.3f"))
     
     if st.button("🔍 Assess Parkinson's Risk"):
-        user_input = [fo, fhi, flo, Jitter_percent, RAP, PPQ, Shimmer, NHR]
         try:
-            prediction = parkinson_model.predict([user_input])
+            prediction = parkinson_model.predict([inputs])
             st.success("Parkinson's Detected" if prediction[0] == 1 else "No Parkinson's Detected")
         except Exception as e:
             st.error(f"Prediction error: {e}")
