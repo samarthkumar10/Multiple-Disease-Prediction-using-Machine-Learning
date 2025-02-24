@@ -21,7 +21,7 @@ with st.sidebar:
         "AI-Powered Health Diagnosis",
         ["Diabetes Analysis", "Heart Health Check", "Parkinson's Assessment"],
         menu_icon="stethoscope",
-        icons=["activity", "heart-pulse", "person"],
+        icons=["activity", "heart", "person"],
         default_index=0,
     )
 
@@ -69,7 +69,7 @@ if selected == "Diabetes Analysis":
 
 # Heart Disease Prediction Page
 elif selected == "Heart Health Check":
-    st.title("💗 Heart Disease Risk Analysis")
+    st.title("❤️ Heart Disease Risk Analysis")
     st.write("Assess your heart condition with AI-powered insights.")
     
     col1, col2 = st.columns([1, 1])
