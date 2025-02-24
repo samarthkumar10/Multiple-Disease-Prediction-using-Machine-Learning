@@ -7,9 +7,13 @@ from streamlit_option_menu import option_menu
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Load models using relative paths
-diabetes_model = pickle.load(open(os.path.join(BASE_DIR, "diabetes_model.sav"), "rb"))
-heart_model = pickle.load(open(os.path.join(BASE_DIR, "heart_model.sav"), "rb"))
-parkinson_model = pickle.load(open(os.path.join(BASE_DIR, "parksinson_model.sav"), "rb"))
+try:
+    diabetes_model = pickle.load(open(os.path.join(BASE_DIR, "diabetes_model.sav"), "rb"))
+    heart_model = pickle.load(open(os.path.join(BASE_DIR, "heart_model.sav"), "rb"))
+    parkinson_model = pickle.load(open(os.path.join(BASE_DIR, "parkinson_model.sav"), "rb"))
+except FileNotFoundError as e:
+    st.error(f"Model file not found: {e}")
+    st.stop()
 
 # Sidebar Navigation
 with st.sidebar:
@@ -57,8 +61,11 @@ if selected == "Diabetes Analysis":
         BMI = st.number_input("Body Mass Index (BMI)", min_value=0.0, format="%.2f")
     
     if st.button("🔍 Get Diabetes Risk Assessment"):
-        result = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
-        st.success("Diabetic" if result[0] == 1 else "Not Diabetic")
+        try:
+            result = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+            st.success("Diabetic" if result[0] == 1 else "Not Diabetic")
+        except Exception as e:
+            st.error(f"Prediction error: {e}")
 
 # Heart Disease Prediction Page
 elif selected == "Heart Health Check":
@@ -87,8 +94,11 @@ elif selected == "Heart Health Check":
             age, 1 if sex == "Male" else 0, cp, trestbps, chol,
             1 if fbs == "Yes" else 0, restecg, thalach, 1 if exang == "Yes" else 0
         ]
-        prediction = heart_model.predict([input_data])
-        st.success("Heart Disease Detected" if prediction[0] == 1 else "No Heart Disease Detected")
+        try:
+            prediction = heart_model.predict([input_data])
+            st.success("Heart Disease Detected" if prediction[0] == 1 else "No Heart Disease Detected")
+        except Exception as e:
+            st.error(f"Prediction error: {e}")
 
 # Parkinson's Prediction Page
 elif selected == "Parkinson's Assessment":
@@ -103,22 +113,12 @@ elif selected == "Parkinson's Assessment":
         RAP = st.number_input("MDVP:RAP", min_value=0.0, format="%.3f")
         APQ3 = st.number_input("Shimmer:APQ3", min_value=0.0, format="%.3f")
     
-    with col2:
-        fhi = st.number_input("MDVP:Fhi(Hz)", min_value=0.0, format="%.3f")
-        Jitter_Abs = st.number_input("MDVP:Jitter(Abs)", min_value=0.0, format="%.3f")
-        PPQ = st.number_input("MDVP:PPQ", min_value=0.0, format="%.3f")
-        APQ5 = st.number_input("Shimmer:APQ5", min_value=0.0, format="%.3f")
-    
-    with col3:
-        flo = st.number_input("MDVP:Flo(Hz)", min_value=0.0, format="%.3f")
-        DDP = st.number_input("Jitter:DDP", min_value=0.0, format="%.3f")
-        Shimmer = st.number_input("MDVP:Shimmer", min_value=0.0, format="%.3f")
-        NHR = st.number_input("NHR", min_value=0.0, format="%.3f")
-    
     if st.button("🔍 Assess Parkinson's Risk"):
         user_input = [
-            fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,
-            DDP, Shimmer, APQ3, APQ5, NHR
+            fo, Jitter_percent, RAP, APQ3
         ]
-        prediction = parkinson_model.predict([user_input])
-        st.success("Parkinson's Detected" if prediction[0] == 1 else "No Parkinson's Detected")
+        try:
+            prediction = parkinson_model.predict([user_input])
+            st.success("Parkinson's Detected" if prediction[0] == 1 else "No Parkinson's Detected")
+        except Exception as e:
+            st.error(f"Prediction error: {e}")
