@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 try:
     diabetes_model = pickle.load(open(os.path.join(BASE_DIR, "diabetes_model.sav"), "rb"))
     heart_model = pickle.load(open(os.path.join(BASE_DIR, "heart_model.sav"), "rb"))
-    parkinson_model = pickle.load(open(os.path.join(BASE_DIR, "parkinson_model.sav"), "rb"))
+    parkinson_model = pickle.load(open(os.path.join(BASE_DIR, "parksinson_model.sav"), "rb"))
 except FileNotFoundError as e:
     st.error(f"Model file not found: {e}")
     st.stop()
