@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Load models using relative paths
 diabetes_model = pickle.load(open(os.path.join(BASE_DIR, "diabetes_model.sav"), "rb"))
 heart_model = pickle.load(open(os.path.join(BASE_DIR, "heart_model.sav"), "rb"))
-parkinson_model = pickle.load(open(os.path.join(BASE_DIR, "parkinson_model.sav"), "rb"))
+parkinson_model = pickle.load(open(os.path.join(BASE_DIR, "parksinson_model.sav"), "rb"))
 
 # Sidebar Navigation
 with st.sidebar:
