@@ -69,7 +69,7 @@ if selected == "Diabetes Analysis":
 
 # Heart Disease Prediction Page
 elif selected == "Heart Health Check":
-    st.title("❤️ Heart Disease Risk Analysis")
+    st.title("💗 Heart Disease Risk Analysis")
     st.write("Assess your heart condition with AI-powered insights.")
     
     col1, col2 = st.columns([1, 1])
