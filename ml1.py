@@ -1,11 +1,15 @@
+import os
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Load ML models
-diabetes_model = pickle.load(open("C:/Users/HP/Desktop/disease detection/diabetes_model.sav", "rb"))
-heart_model = pickle.load(open("C:/Users/HP/Desktop/disease detection/heart_model.sav", "rb"))
-parkinson_model = pickle.load(open("C:/Users/HP/Desktop/disease detection/parksinson_model.sav", "rb"))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Load models using relative paths
+diabetes_model = pickle.load(open(os.path.join(BASE_DIR, "diabetes_model.sav"), "rb"))
+heart_model = pickle.load(open(os.path.join(BASE_DIR, "heart_model.sav"), "rb"))
+parkinson_model = pickle.load(open(os.path.join(BASE_DIR, "parkinson_model.sav"), "rb"))
 
 # Sidebar Navigation
 with st.sidebar:
