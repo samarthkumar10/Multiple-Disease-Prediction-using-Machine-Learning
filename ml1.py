@@ -72,24 +72,22 @@ elif selected == "Heart Health Check":
     st.title("❤️ Heart Disease Risk Analysis")
     st.write("Assess your heart condition with AI-powered insights.")
     
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns([1, 1])
     
     with col1:
         age = st.number_input("Age", min_value=1, step=1)
+        sex = st.radio("Sex", ("Male", "Female"))
+        cp = st.selectbox("Chest Pain Type", [0, 1, 2, 3])
         trestbps = st.number_input("Resting Blood Pressure (mmHg)", min_value=0.0, format="%.2f")
-        restecg = st.number_input("Resting Electrocardiographic Results", min_value=0, step=1)
-        oldpeak = st.number_input("ST Depression Induced by Exercise", min_value=0.0, format="%.2f")
+        chol = st.number_input("Serum Cholesterol (mg/dl)", min_value=0.0, format="%.2f")
+        fbs = st.radio("Fasting Blood Sugar > 120 mg/dl", ("Yes", "No"))
     
     with col2:
-        sex = st.radio("Sex", ("Male", "Female"))
-        chol = st.number_input("Serum Cholesterol (mg/dl)", min_value=0.0, format="%.2f")
+        restecg = st.number_input("Resting Electrocardiographic Results", min_value=0, step=1)
         thalach = st.number_input("Max Heart Rate Achieved", min_value=0, step=1)
-        slope = st.number_input("Slope of the Peak Exercise ST Segment", min_value=0, step=1)
-    
-    with col3:
-        cp = st.selectbox("Chest Pain Type", [0, 1, 2, 3])
-        fbs = st.radio("Fasting Blood Sugar > 120 mg/dl", ("Yes", "No"))
         exang = st.radio("Exercise Induced Angina", ("Yes", "No"))
+        oldpeak = st.number_input("ST Depression Induced by Exercise", min_value=0.0, format="%.2f")
+        slope = st.number_input("Slope of the Peak Exercise ST Segment", min_value=0, step=1)
         ca = st.number_input("Number of Major Vessels Colored by Fluoroscopy", min_value=0, step=1)
         thal = st.number_input("Thalassemia (0 = normal, 1 = fixed defect, 2 = reversible defect)", min_value=0, step=1)
     
