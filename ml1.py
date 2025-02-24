@@ -119,7 +119,10 @@ elif selected == "Parkinson's Assessment":
     
     for i, feature in enumerate(feature_names):
         with cols[i % 3]:
-            inputs.append(st.number_input(feature, min_value=-100.0, format="%.3f"))
+            if feature == "spread1":
+                inputs.append(st.number_input(feature, min_value=-100.0, format="%.3f"))
+            else:
+                inputs.append(st.number_input(feature, min_value=0.0, format="%.3f"))
     
     if st.button("🔍 Assess Parkinson's Risk"):
         try:
