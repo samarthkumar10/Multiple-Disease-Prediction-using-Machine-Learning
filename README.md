@@ -1,12 +1,37 @@
-This project aims to build a web application that predicts the likelihood of various diseases based on user-input symptoms and medical data, using machine learning models. 
-The diseases covered in this project include Diabetes, Heart Disease, and Parkinson's Disease.
-The application leverages Python, Streamlit, and several machine learning algorithms to provide real-time predictions through an interactive interface.
+# Multiple Disease Prediction using Machine Learning
 
-Features:
-Predict the risk of Diabetes, Heart Disease, and Parkinson's Disease.
-User-friendly web interface built using Streamlit.
-Pre-trained machine learning models for each disease.
-Easy-to-use input forms to collect necessary health parameters.
-Instant predictions with accuracy scores.
+This project is a machine learning-based web application that predicts the likelihood of multiple diseases based on user-input medical data. The diseases covered include **Diabetes**, **Heart Disease**, and **Parkinson's Disease**.
 
+The system uses pre-trained models and provides a simple interface built with **Streamlit** for users to check their health status quickly and easily.
+
+---
+
+##  Features
+
+- Predicts:
+  - Diabetes
+  - Heart Disease
+  - Parkinson's Disease
+- User-friendly web interface using **Streamlit**
+- Pre-trained machine learning models for real-time predictions
+- Quick and accurate risk analysis based on health metrics
+
+---
+
+##  Tech Stack
+
+- **Frontend:** Streamlit
+- **Backend:** Python
+- **Machine Learning Models:**
+  - Logistic Regression
+  - Random Forest Classifier
+  - Support Vector Machine (SVM)
+- **Libraries:**
+  - scikit-learn
+  - pandas
+  - numpy
+  - streamlit
+  - pickle
+
+---
 
